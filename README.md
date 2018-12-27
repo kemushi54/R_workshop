@@ -1,7 +1,10 @@
-# R_worlshop
+# R workshop @TESRI
 從軟體安裝開始的工作坊 
 
 ## 課前準備
+請下載並完成安裝 **R** 與 **RStudio**
+* R: https://www.r-project.org/
+* RStudio: https://www.rstudio.com/
 
 
 ## 課程內容
