@@ -2,14 +2,27 @@
 從軟體安裝開始的工作坊 
 
 ## 課前準備
-請下載並完成安裝 **R** 與 **RStudio**
-* R: https://www.r-project.org/
-* RStudio: https://www.rstudio.com/
+請下載並完成安裝 **R** 與 **RStudio**</br>
+目前最新版的 R 是 3.5.2，RStudio 是 1.1.463，都安裝最新版的就可以了
+
+**先安裝 R 再安裝 RStudio！！**</br>
+    **先安裝 R 再安裝 RStudio！！**</br>
+        **先安裝 R 再安裝 RStudio！！**</br>
+        
+* R 載點: https://ftp.yzu.edu.tw/CRAN/</br>  
+  
+* RStudio 載點: https://www.rstudio.com/products/rstudio/download/#download</br>
+
+選擇跟自己電腦作業系統相對應的連結下載安裝檔 (Windows/ Mac/ Linux)</br>
+下載完畢之後執行安裝檔，依照提示訊息點選確認或下一步就能完成安裝了</br>
+
+詳細的 R 與 RStudio 的安步驟請參照[這裡](http://www.learn-r-the-easy-way.tw/chapters/2#r)
+
 
 
 ## 課程內容
-10:00~ R & RStudio安裝、背景環境設定、常用package安裝 (小蟲) </br>
-14:00~ R的資料匯入、資料檢視、基礎敘述統計 (富安) </br>
-15:00~ ggplot2 統計圖繪製 (祈鈞) </br>
-17:00~ R教學網站 (小蟲) </br>
+10:00~ R & RStudio 安裝、背景環境設定、常用 package 安裝 </br>
+14:00~ R 的資料匯入、資料檢視、基礎敘述統計 </br>
+15:00~ ggplot2 統計圖繪製 </br>
+17:00~ R 教學網站 </br>
 
