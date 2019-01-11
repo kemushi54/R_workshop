@@ -1,0 +1,256 @@
+---
+title: "R workshop @TESRI"
+author: "A.Y Chang"
+date: "2019.01.07"
+output: 
+  ioslides_presentation:
+    widescreen: true
+---
+
+<style>
+  slide {
+  background-color: lightgrey;
+  }
+  
+  h2 {
+  color: black;
+  font-family: Microsoft JhengHei;
+  }
+  
+  div {
+  color: black;
+  font-family: Microsoft JhengHei;
+  }
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      tidy.opts = list(blank = FALSE, width.cutoff = 60))
+```
+
+
+## R & RStudio
+
+<div>
+- R language
+    - https://www.r-project.org/
+    - 免費開放原始碼軟體程式語言與操作環境
+    - Since 1993 (Ross Ihaka and Robert Gentleman)(改寫自 S 語言)
+    - 目前由 R Core Team (約20位成員) 負責開發與維護 
+    - 強項：統計分析、繪圖、資料探勘
+
+- RStudio
+    - https://www.rstudio.com/
+    - 整合開發環境 (IDE, Integrated Development Environment)
+</div>
+
+## 安裝 R & RStudio
+
+<div>
+請參考「輕鬆學習 R 語言」<br>
+http://www.learn-r-the-easy-way.tw/chapters/2#r
+</div>
+
+## RStudio 介面
+
+<div>
+<table style="padding:5px; width:100%">
+<col width="75%">
+<col width="25%">
+<tr>
+<td>
+<img src="D:/Project/Kemushi/R_workshop/image/rstudio interface.png"          style="width:90%; padding:10px">
+</td>
+
+<td style="font-size:80%; background-color:lightblue; padding:5px">
+左上角<br> **Workspace**<br>寫程式碼的地方</br><br>
+左下角<br> **Console**<br>執行程式碼的地方</br><br>
+右上角<br> **Environment**<br>R 環境、歷史紀錄</br><br>
+右下角<br> **Files, Plot, Packages...**<br>工作環境、輸出、套件等
+</td>
+</tr>
+</table>
+</div>
+
+## 來試著輸入一些東西吧
+
+<div>
+### 把 R 當計算機
+
+```{r eval=FALSE, echo=TRUE}
+# 加(+)、減(-)、乘(*)、除(/)
+1+1
+3*5
+
+# 次方(^)
+2^10
+
+# 餘數(%%)
+11%%3
+```
+
+<div style="background-color:lightblue; font-size:70%; padding:5px">
+- 程式碼可以寫在 Workspace，也可以寫在 Console
+- 建議將還在測試階段的程式碼寫在 Workspace
+
+- 在 Workspace 執行程式按 `Ctrl + Enter` (for windows), `Command + Enter` (for Mac)
+- 在 Console 執行程式按 `Enter`
+</div>
+</div>
+
+## 儲存 Script
+
+<img src="D:/Project/Kemushi/R_workshop/image/save script.png" style="width:100%">
+
+
+## 函數 (function) 與套件 (package)
+
+<div>
+<p>
+### **函數**
+透過函數可以定義一個特定的功能，當使用函數時只要輸入**參數(輸入值)**，執行後就可以取得**回傳值 (輸出值)**
+</p>
+<p>
+`函數名(參數1 = 值1, 參數2 = 值2, …)`
+</p>
+<p>
+試看看 `seq(from = 1, to = 10)`
+</p>
+
+<p>
+### **套件**
+基礎函數之外，由不同的開發者所開發打包成套的函數
+</p>
+</div>
+
+## Help 使用函數前請詳閱公開說明書
+
+<div>
+- ?seq
+- ??seq
+
+<div style="background-color:lightblue; padding:5px">
+    - Description: 函數的功能
+    - Usage: 基本語法，包含引數的順序跟預設值
+    - Arguments：引數的細節
+    - Details：函數的詳細內容
+    - Value：回傳值的內容
+    - See Also：其他相關的函數
+    - Examples：使用範例
+<p style="text-align:right;font-size:70%">(初學R語言的60分鐘 廖鎮磐)</p>
+</div>
+</div>
+
+## 安裝與讀取套件
+
+<div>
+- 安裝套件
+    - `install.packages(“套件名稱”)`
+
+- 讀取套件
+    - `library(套件名稱)`
+</div>
+
+## 用變數暫存資料 (variable)
+
+<div>
+為任何想要暫時存放在R程式裡面的東西取名字！
+
+命名注意事項：
+
+- 盡量用英文！
+- 大小寫有差別 Data vs. data
+- 變數的名稱開頭盡量不要用數字
+- 用 `<-` 來指定變數 (快捷鍵 `Alt + -`)
+
+範例：儲存一個名字為 aaa 的變數，內容為數字 123
+```{r }
+aaa <- 123
+```
+</div>
+
+## 變數類型
+
+<div>
+英文名稱 | 中文名稱 | 範例
+|:--- |:--- |:---
+Numeric | 數值 | `2`
+Interger | 整數 | `2L`
+Logical | 邏輯值 | `TRUE, FALSE`
+Character | 文字 | `"這是文字"`
+Factor | 類別 | 
+</div>
+
+## 變數結構
+
+<div>
+- 向量 (vector)
+- 矩陣 (matrix)
+- 串列 (list)
+- 表格 (data.frame)
+</div>
+
+## 向量 (vector)
+
+<div>
+- 一維資料結構
+- 只允許單一類型的資料內容
+
+**範例：產生一個 vector**
+```{r}
+A.vector <- c("aa", "bb", 1)
+A.vector
+```
+
+**範例：選取部分 vector 的內容**
+```{r}
+A.vector[2]
+```
+</div>
+
+## 矩陣 (matrix)
+
+<div>
+- 二維資料結構
+- 只允許單一類型的資料內容
+- 先列 (row) 後欄 (column)
+
+**範例：產生一個 matrix**
+```{r}
+A.matrix <- matrix(1:12, nrow = 2)
+A.matrix
+```
+
+**範例：選取部分 matrix 的內容**
+```{r 截取部分資料}
+A.matrix[1, 3]
+```
+</div>
+
+## 串列 (list)
+
+<div>
+- 一維資料結構為基礎
+- 允許多種類型的資料內容
+
+**範例：產生一個 list**
+```{r}
+A.list <- list("aa", 1)
+A.list
+```
+</div>
+
+## 資料框 (data.frame)
+
+<div>
+**範例：產生一個 data.frame**
+```{r}
+A.data.frame <- data.frame(col1=c(1, 2, 3), col2=c("a", "b", "c"))
+A.data.frame
+```
+
+**範例：選取部分 data.frame 的內容**
+```{r}
+A.data.frame[3, 2]
+```
+</div>
