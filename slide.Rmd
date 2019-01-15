@@ -9,7 +9,7 @@ output:
 
 <style>
   slide {
-  background-color: lightgrey;
+  background-color: #F2F2F2;
   }
   
   h2 {
@@ -21,6 +21,17 @@ output:
   color: black;
   font-family: Microsoft JhengHei;
   }
+  
+  pre.prettyprint.lang-r {
+  padding: 20px;
+  background-color: #B2B2B2;
+  border-left: #F2F2F2 60px solid;
+  }
+  
+  code {
+  color: #008000;
+  }
+  
 </style>
 
 ```{r setup, include=FALSE}
@@ -35,7 +46,7 @@ knitr::opts_chunk$set(echo = TRUE,
 - R language
     - https://www.r-project.org/
     - 免費開放原始碼軟體程式語言與操作環境
-    - Since 1993 (Ross Ihaka and Robert Gentleman)(改寫自 S 語言)
+    - Since 1993 (Ross Ihaka and Robert Gentleman)
     - 目前由 R Core Team (約20位成員) 負責開發與維護 
     - 強項：統計分析、繪圖、資料探勘
 
@@ -51,22 +62,37 @@ knitr::opts_chunk$set(echo = TRUE,
 http://www.learn-r-the-easy-way.tw/chapters/2#r
 </div>
 
+
+## 為什麼要學 R 
+
+<div>
+程式語言的特性：用文字指令代替拖拉點選的操作流程
+
+- 可重複執行性高
+- 容易修改
+- 容易寫備註
+- 操作流程容易分享給他人
+</div>
+
+
 ## RStudio 介面
 
 <div>
 <table style="padding:5px; width:100%">
-<col width="75%">
-<col width="25%">
+<col width="76%">
+<col width="24%">
 <tr>
 <td>
-<img src="D:/Project/Kemushi/R_workshop/image/rstudio interface.png"          style="width:90%; padding:10px">
+<img src="D:/Project/Kemushi/R_workshop/image/rstudio interface.png"          style="width:100%; padding:0px">
 </td>
 
-<td style="font-size:80%; background-color:lightblue; padding:5px">
+<td style="font-size:70%; background-color:lightblue;">
+<div style="padding:10px";>
 左上角<br> **Workspace**<br>寫程式碼的地方</br><br>
 左下角<br> **Console**<br>執行程式碼的地方</br><br>
 右上角<br> **Environment**<br>R 環境、歷史紀錄</br><br>
-右下角<br> **Files, Plot, Packages...**<br>工作環境、輸出、套件等
+右下角<br> **Files, Plot, Packages...**<br>工作環境、輸出、套件
+</div>
 </td>
 </tr>
 </table>
@@ -76,7 +102,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 <div>
 ### 把 R 當計算機
-
+</div>
 ```{r eval=FALSE, echo=TRUE}
 # 加(+)、減(-)、乘(*)、除(/)
 1+1
@@ -96,38 +122,57 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 - 在 Workspace 執行程式按 `Ctrl + Enter` (for windows), `Command + Enter` (for Mac)
 - 在 Console 執行程式按 `Enter`
 </div>
-</div>
 
 ## 儲存 Script
 
 <img src="D:/Project/Kemushi/R_workshop/image/save script.png" style="width:100%">
 
 
-## 函數 (function) 與套件 (package)
+## 函數 (function)
 
 <div>
 <p>
-### **函數**
-透過函數可以定義一個特定的功能，當使用函數時只要輸入**參數(輸入值)**，執行後就可以取得**回傳值 (輸出值)**
+程式語言可以透過定義函數來提供一個特定的功能，當使用函數時只要給定要求的**參數 (輸入值)**，執行後就可以取得**回傳值 (輸出值)**
 </p>
 <p>
 `函數名(參數1 = 值1, 參數2 = 值2, …)`
 </p>
 <p>
-試看看 `seq(from = 1, to = 10)`
-</p>
+```{r}
+function_1 <- 
+  function(x){
+    x + 3
+  }
+```
+```{r}
+function_1(x = 5)
+```
 
-<p>
-### **套件**
-基礎函數之外，由不同的開發者所開發打包成套的函數
 </p>
 </div>
+
+## 套件 (package)
+
+<div>
+基礎函數之外，由不同的開發者所開發打包成套的函數，通常一個套件內的函數會有相似的功能，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是處理 GIS 資料的的 `rdgal`。
+</div>
+
+### 安裝與讀取套件
+
+<div>
+- 安裝套件
+    - `install.packages(“套件名稱”)`
+
+- 讀取套件
+    - `library(套件名稱)`
+</div>
+
 
 ## Help 使用函數前請詳閱公開說明書
 
 <div>
-- ?seq
-- ??seq
+- ?seq (查詢已經有安裝的套件內的函數)
+- ??seq (查詢沒有安裝的套件內的函數)
 
 <div style="background-color:lightblue; padding:5px">
     - Description: 函數的功能
@@ -141,44 +186,51 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 </div>
 </div>
 
-## 安裝與讀取套件
-
-<div>
-- 安裝套件
-    - `install.packages(“套件名稱”)`
-
-- 讀取套件
-    - `library(套件名稱)`
-</div>
 
 ## 用變數暫存資料 (variable)
 
 <div>
-為任何想要暫時存放在R程式裡面的東西取名字！
+為任何想暫存在 R 裡面的東西取名字！
+
+- 用 `<-` 來指定變數 (快捷鍵 `Alt + -`)
+
+```{r }
+aaa <- 123
+```
 
 命名注意事項：
 
 - 盡量用英文！
-- 大小寫有差別 Data vs. data
-- 變數的名稱開頭盡量不要用數字
-- 用 `<-` 來指定變數 (快捷鍵 `Alt + -`)
+- 大小寫有差別 Data 不等於 data
+- 變數名稱開頭不要用數字
+- 變數名稱不能有 **空格** 跟 **/**
+- 取有意義的名字 ~~`a, aa, aaa`~~ 
+- 變數名稱不要取跟函數名稱相同
 
-範例：儲存一個名字為 aaa 的變數，內容為數字 123
-```{r }
-aaa <- 123
-```
 </div>
+
+## 用變數暫存資料 (variable) II
+
+```{r}
+m <- 3
+n <- 5
+
+m + n
+```
+
+
 
 ## 變數類型
 
 <div>
-英文名稱 | 中文名稱 | 範例
-|:--- |:--- |:---
-Numeric | 數值 | `2`
-Interger | 整數 | `2L`
-Logical | 邏輯值 | `TRUE, FALSE`
-Character | 文字 | `"這是文字"`
-Factor | 類別 | 
+- Numeric (數值): `2`
+- Interger (整數): `2L`
+- Logical (邏輯值): `TRUE, FALSE`
+- Character (文字): `"這是文字"`
+- Factor (類別) 
+</div>
+<div style="background-color:lightblue; padding:5px">
+變數類型可用 `class()` 來查詢
 </div>
 
 ## 變數結構
@@ -188,6 +240,9 @@ Factor | 類別 |
 - 矩陣 (matrix)
 - 串列 (list)
 - 表格 (data.frame)
+</div>
+<div style="background-color:lightblue; padding:5px">
+變數結構可用 `class()` 來查詢
 </div>
 
 ## 向量 (vector)
@@ -227,11 +282,11 @@ A.matrix[1, 3]
 ```
 </div>
 
-## 串列 (list)
+## 清單 (list)
 
 <div>
 - 一維資料結構為基礎
-- 允許多種類型的資料內容
+- 可以允許不同資料類型的資料內容
 
 **範例：產生一個 list**
 ```{r}
@@ -254,3 +309,8 @@ A.data.frame
 A.data.frame[3, 2]
 ```
 </div>
+
+
+##
+
+沒有最好的工具，只有最適合你的工具。
