@@ -22,6 +22,7 @@
 
 ## 課程內容
 10:00~ R & RStudio 安裝、背景環境設定、常用 package 安裝 </br>
+https://kemushi54.github.io/R_workshop/slide.html</br>
 14:00~ R 的資料匯入、資料檢視、基礎敘述統計 </br>
 15:00~ ggplot2 統計圖繪製 </br>
 17:00~ R 教學網站 </br>
