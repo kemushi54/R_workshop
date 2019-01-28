@@ -17,14 +17,21 @@ output:
   font-family: Microsoft JhengHei;
   }
   
+  h3 {
+  color: black;
+  font-family: Microsoft JhengHei;
+  font-weight:bold;
+  }
+  
   div {
   color: black;
   font-family: Microsoft JhengHei;
+  line-height:120%;
   }
   
   pre.prettyprint.lang-r {
-  padding: 20px;
-  background-color: #B2B2B2;
+  padding: 10px;
+  background-color: #C6C6C6;
   border-left: #F2F2F2 60px solid;
   }
   
@@ -43,16 +50,16 @@ knitr::opts_chunk$set(echo = TRUE,
 ## R & RStudio
 
 <div>
-- R language
-    - https://www.r-project.org/
-    - 免費開放原始碼軟體程式語言與操作環境
-    - Since 1993 (Ross Ihaka and Robert Gentleman)
-    - 目前由 R Core Team (約20位成員) 負責開發與維護 
-    - 強項：統計分析、繪圖、資料探勘
+### R language
+- https://www.r-project.org/
+- 免費開放原始碼軟體程式語言與操作環境
+- Since 1993 (Ross Ihaka and Robert Gentleman)
+- 目前由 R Core Team (約20位成員) 負責開發與維護 
+- 強項：統計分析、繪圖、資料探勘
 
-- RStudio
-    - https://www.rstudio.com/
-    - 整合開發環境 (IDE, Integrated Development Environment)
+### RStudio
+- https://www.rstudio.com/
+- 整合開發環境 (IDE, Integrated Development Environment)
 </div>
 
 ## 安裝 R & RStudio
@@ -63,19 +70,24 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 </div>
 
 
-## 為什麼要學 R 
+## 使用 R 有什麼好處？ 
 
 <div>
-程式語言的特性：用文字指令代替拖拉點選的操作流程
+### 1. 程式語言的特性：用文字指令代替拖拉點選的操作流程
+* 可重複執行性高
+* 容易修改
+* 容易寫備註
+* 操作流程容易分享給他人
+    
+### 2. 學界主流的資料分析語言之一
+* 許多 paper 的分析方法都會附上 R code
 
-- 可重複執行性高
-- 容易修改
-- 容易寫備註
-- 操作流程容易分享給他人
+### 3. Open source software
+* 社群的力量支援 (package的開發、教學網站、研討會)
 </div>
 
 
-## RStudio 介面
+## 預設的 RStudio 介面
 
 <div>
 <table style="padding:5px; width:100%">
@@ -118,73 +130,14 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 <div style="background-color:lightblue; font-size:70%; padding:5px">
 - 程式碼可以寫在 Workspace，也可以寫在 Console
 - 建議將還在測試階段的程式碼寫在 Workspace
-
 - 在 Workspace 執行程式按 `Ctrl + Enter` (for windows), `Command + Enter` (for Mac)
 - 在 Console 執行程式按 `Enter`
 </div>
 
+
 ## 儲存 Script
 
 <img src="D:/Project/Kemushi/R_workshop/image/save script.png" style="width:100%">
-
-
-## 函數 (function)
-
-<div>
-<p>
-程式語言可以透過定義函數來提供一個特定的功能，當使用函數時只要給定要求的**參數 (輸入值)**，執行後就可以取得**回傳值 (輸出值)**
-</p>
-<p>
-`函數名(參數1 = 值1, 參數2 = 值2, …)`
-</p>
-<p>
-```{r}
-function_1 <- 
-  function(x){
-    x + 3
-  }
-```
-```{r}
-function_1(x = 5)
-```
-
-</p>
-</div>
-
-## 套件 (package)
-
-<div>
-基礎函數之外，由不同的開發者所開發打包成套的函數，通常一個套件內的函數會有相似的功能，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是處理 GIS 資料的的 `rdgal`。
-</div>
-
-### 安裝與讀取套件
-
-<div>
-- 安裝套件
-    - `install.packages(“套件名稱”)`
-
-- 讀取套件
-    - `library(套件名稱)`
-</div>
-
-
-## Help 使用函數前請詳閱公開說明書
-
-<div>
-- ?seq (查詢已經有安裝的套件內的函數)
-- ??seq (查詢沒有安裝的套件內的函數)
-
-<div style="background-color:lightblue; padding:5px">
-    - Description: 函數的功能
-    - Usage: 基本語法，包含引數的順序跟預設值
-    - Arguments：引數的細節
-    - Details：函數的詳細內容
-    - Value：回傳值的內容
-    - See Also：其他相關的函數
-    - Examples：使用範例
-<p style="text-align:right;font-size:70%">(初學R語言的60分鐘 廖鎮磐)</p>
-</div>
-</div>
 
 
 ## 用變數暫存資料 (variable)
@@ -196,121 +149,236 @@ function_1(x = 5)
 
 ```{r }
 aaa <- 123
+word <- "文字"
 ```
-
-命名注意事項：
-
-- 盡量用英文！
-- 大小寫有差別 Data 不等於 data
-- 變數名稱開頭不要用數字
-- 變數名稱不能有 **空格** 跟 **/**
-- 取有意義的名字 ~~`a, aa, aaa`~~ 
-- 變數名稱不要取跟函數名稱相同
+```{r}
+aaa
+```
+```{r}
+word
+```
 
 </div>
 
 ## 用變數暫存資料 (variable) II
 
 ```{r}
+# 指定 m 等於 3、n 等於 5，計算 m + n
 m <- 3
 n <- 5
-
+```
+```{r}
 m + n
 ```
 
+
+## 用變數暫存資料 (variable) III
+
+<div>
+命名注意事項：
+
+- 盡量用英文！
+<spam style="color:#1E9E1E">Data <- 123(O)</spam>; 
+<spam style="color:#9E1E1E">資料 <- 123(X)</spam>
+- 變數名稱開頭不要用數字
+<spam style="color:#1E9E1E">Grid_1km(O)</spam>; 
+<spam style="color:#9E1E1E">1km_Grid(X)</spam>
+- 變數名稱不能含有 <spam style="color:#9E1E1E">空格</spam> 跟 <spam style="color:#9E1E1E">/</spam>
+- 大小寫有差別， Data 不等於 data
+- 取有意義的名字
+<spam style="color:#1E9E1E">RK.data(O)</spam>; 
+<spam style="color:#9E1E1E">a, aa, aaa(X)</spam>
+- 變數名稱不要取跟函數名稱相同
+</div>
 
 
 ## 變數類型
 
 <div>
 - Numeric (數值): `2`
-- Interger (整數): `2L`
-- Logical (邏輯值): `TRUE, FALSE`
+- Logical (邏輯值): `TRUE, FALSE, T, F`
 - Character (文字): `"這是文字"`
 - Factor (類別) 
 </div>
-<div style="background-color:lightblue; padding:5px">
-變數類型可用 `class()` 來查詢
-</div>
+
+```{r}
+# 變數類型可用 class() 來查詢
+class("這是文字")
+class(2)
+```
+
 
 ## 變數結構
 
 <div>
-- 向量 (vector)
-- 矩陣 (matrix)
-- 串列 (list)
-- 表格 (data.frame)
+- Vector (向量)
+- Matrix (矩陣)
+- List (清單)
+- Data.frame (資料表)
 </div>
 <div style="background-color:lightblue; padding:5px">
 變數結構可用 `class()` 來查詢
 </div>
 
-## 向量 (vector)
+## Vector (向量)
 
 <div>
 - 一維資料結構
 - 只允許單一類型的資料內容
 
-**範例：產生一個 vector**
 ```{r}
+# 產生一個 vector: c()
 A.vector <- c("aa", "bb", 1)
 A.vector
 ```
 
-**範例：選取部分 vector 的內容**
 ```{r}
+# 選取部分 vector 的內容: []
 A.vector[2]
 ```
 </div>
 
-## 矩陣 (matrix)
+## Matrix (矩陣)
 
 <div>
 - 二維資料結構
 - 只允許單一類型的資料內容
-- 先列 (row) 後欄 (column)
 
-**範例：產生一個 matrix**
 ```{r}
+# 產生一個 matrix: matrix()
 A.matrix <- matrix(1:12, nrow = 2)
 A.matrix
 ```
 
-**範例：選取部分 matrix 的內容**
 ```{r 截取部分資料}
+# 選取部分 matrix 的內容: [row, column]
 A.matrix[1, 3]
 ```
 </div>
 
-## 清單 (list)
+## List (清單)
 
 <div>
 - 一維資料結構為基礎
 - 可以允許不同資料類型的資料內容
 
-**範例：產生一個 list**
 ```{r}
+# 產生一個 list: list()
 A.list <- list("aa", 1)
 A.list
 ```
 </div>
 
-## 資料框 (data.frame)
+## Data.frame (資料表)
 
 <div>
-**範例：產生一個 data.frame**
 ```{r}
+# 產生一個 data.frame: data.frame()
 A.data.frame <- data.frame(col1=c(1, 2, 3), col2=c("a", "b", "c"))
 A.data.frame
 ```
 
-**範例：選取部分 data.frame 的內容**
 ```{r}
+# 選取部分 data.frame 的內容: [row, column]
 A.data.frame[3, 2]
 ```
 </div>
 
 
-##
+## Function (函數)
 
-沒有最好的工具，只有最適合你的工具。
+<div>
+<p>
+在 R 語言中，可以透過定義 function 來提供一個特定的功能，當使用 function 時只要給定 function 要求的 **input (參數)**，執行後就可以取得 **Output  (回傳值)**
+</p>
+<p>
+`函數名稱(參數1 = 值1, 參數2 = 值2, …)`
+</p>
+<p>
+```{r}
+matrix(1:12, nrow = 2)
+```
+```{r}
+matrix(1:12, nrow = 2, byrow = TRUE)
+```
+
+</p>
+</div>
+
+## Package (套件)
+
+<div>
+一個 package 會包含了許多功能類型相近的 function，R 語言的強大就是來自於擁有這些龐大的套件庫，除了 R 內建的 packages (Base R) 之外，由於 R 是開放原碼，也有許多由世界各地不同的開發者所開發出來打包成套的函數，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`，。
+</div>
+
+<div>
+### **安裝與讀取套件**
+
+- 安裝套件
+    - `install.packages(“套件名稱”)`
+
+- 讀取套件
+    - `library(套件名稱)`
+</div>
+
+
+## Help 使用函數前請詳閱公開說明書
+
+<div>
+- ?函數名稱 (查詢已安裝套件內的函數)
+- ??函數名稱 (查詢尚未安裝套件內的函數)
+</div>
+
+<div style="background-color:lightblue; padding:10px; font-size:20px; line-height:120%">
+- Description: 函數的功能
+- Usage: 基本語法，包含引數的順序跟預設值
+- Arguments：引數的細節
+- Details：函數的詳細內容
+- Value：回傳值的內容
+- See Also：其他相關的函數
+- Examples：使用範例
+</div>
+
+<div style="text-align:right;font-size:70%">(初學R語言的60分鐘 廖鎮磐)
+</div>
+
+
+
+## 
+
+<div>
+### 函數套件五花八門，怎麼學RRRRRR！？
+
+函數永遠學不完，而且還會一直開發新的，有要用到再來估狗就好
+
+### 遇到 error 怎麼辦 @_____@？
+
+1. 先冷靜下來看看 error 吐出的訊息是什麼，雖然都是英文，雖然有些很長像外星語，但通常都會提示是哪裡出問題了
+
+2. 整串 error 訊息複製貼上去估狗
+
+### 想做某件事，但是沒有概念要怎麼做？
+
+找出關鍵字，估狗！
+
+### 除了估狗，還是估狗 
+</div>
+
+
+## 一些學習 R 或幫助 debug 的地方
+  
+[輕鬆學習 R 語言](http://www.learn-r-the-easy-way.tw) (有免費的線上電子書，也可以購買實體書支持一下作者)
+
+[How To Use R With Excel](https://rpubs.com/acolumbus/how-to-use-r-with-excel) (有 excel 跟 R 之間的函式庫對應)
+
+[stackoverflow](https://stackoverflow.com/) (通常估狗問題的前幾個連結就有他)
+
+[Github](https://github.com/) (號稱工程師的臉書XD)
+
+
+## 沒有最好的工具，只有最適合你的工具。
+
+<div style="font-size:28px; line-height: 150%">
+<p>沒有 **懂得 coding 就比較厲害** 這回事！ (只有比較宅...T___T)</p>
+<p>Excel、Power BI 也都是很好的工具，但我覺得時間許可的情況下，可以給自己一個機會去接觸不同的工具，讓在在處理事情時有不同的選項。課程結束後，如果覺得拖拉點選還是比較適合自己，可以回去投入 excel 的懷抱沒關係，真的。工具就是要減輕你的負擔，如果使用工具反而讓你覺得事倍功半，那就失去了使用工具的意義</p>
+</div>
