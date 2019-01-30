@@ -7,7 +7,7 @@
 目前最新版的 R 是 3.5.2，RStudio 是 1.1.463，都安裝最新版的就可以了
 
 **先安裝 R 再安裝 RStudio！！**
-        
+
 * R 載點: https://ftp.yzu.edu.tw/CRAN/
 
 * RStudio 載點: https://www.rstudio.com/products/rstudio/download/#download
@@ -23,7 +23,8 @@
 ## 課程內容
 10:00~ R & RStudio 安裝、背景環境設定、常用 package 安裝 [[Slides]](https://kemushi54.github.io/R_workshop/slide.html)
 
-14:00~ R 的資料匯入、資料檢視、基礎敘述統計 </br>
-15:00~ ggplot2 統計圖繪製 </br>
-17:00~ R 教學網站 </br>
+14:00~ R 的資料匯入、資料檢視、基礎敘述統計
 
+15:00~ ggplot2 統計圖繪製
+
+17:00~ R 教學網站
