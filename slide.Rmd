@@ -1,10 +1,10 @@
 ---
-title: "R workshop @TESRI"
+title: "R Workshop @TESRI"
 author: "A.Y Chang"
 date: "2019.01.07"
 output: 
   ioslides_presentation:
-    widescreen: true
+    widescreen: yes
 ---
 
 <style>
@@ -29,23 +29,38 @@ output:
   line-height:120%;
   }
   
+  pre{
+  font-size:75%;
+  }
+  
   pre.prettyprint.lang-r {
   padding: 10px;
   background-color: #C6C6C6;
   border-left: #F2F2F2 60px solid;
+  font-size:90%;
   }
   
   code {
   color: #008000;
   }
   
+  .text{
+  line-height:150%;
+  }
+  
+  
 </style>
 
 ```{r setup, include=FALSE}
+library(knitr)
+library(kableExtra)
+library(magrittr)
+library(data.table)
 knitr::opts_chunk$set(echo = TRUE,
                       tidy.opts = list(blank = FALSE, width.cutoff = 60))
 ```
 
+# Introduction to R
 
 ## R & RStudio
 
@@ -70,20 +85,21 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 </div>
 
 
-## 使用 R 有什麼好處？ 
+## Why R？ 
 
 <div>
-### 1. 程式語言的特性：用文字指令代替拖拉點選的操作流程
-- 可重複執行性高
-* 容易修改
-* 容易寫備註
+### 1. 程式語言的特性：以文字指令代替在圖型化介面中拖拉點選的操作流程
+* 可重複執行性高，而且容易修改
+* 可以直接在指令中寫備註
 * 操作流程容易分享給他人
     
-### 2. 學界主流的資料分析語言之一
+### 2. 學界(至少生態圈)主流的資料分析語言
 * 許多 paper 的分析方法都會附上 R code
 
-### 3. Open source software
-* 社群的力量支援 (package的開發、教學網站、研討會)
+### 3. Open source
+* 社群的力量支援
+    * 眾多現成的小工具 (packages)
+    * 教學網站、研討會、討論社群
 </div>
 
 
@@ -91,15 +107,15 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 <div>
 <table style="padding:5px; width:100%">
-<col width="76%">
-<col width="24%">
+<col width="80%">
+<col width="20%">
 <tr>
 <td>
 <img src="D:/Project/Kemushi/R_workshop/image/rstudio interface.png"          style="width:100%; padding:0px">
 </td>
 
-<td style="font-size:70%; background-color:lightblue;">
-<div style="padding:10px";>
+<td style="font-size:65%;">
+<div style="padding:10px;background-color:lightblue;">
 左上角<br> **Workspace**<br>寫程式碼的地方</br><br>
 左下角<br> **Console**<br>執行程式碼的地方</br><br>
 右上角<br> **Environment**<br>R 環境、歷史紀錄</br><br>
@@ -110,7 +126,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 </table>
 </div>
 
-## 來試著輸入一些東西吧
+## 試著在 R 輸入一些東西吧
 
 <div>
 ### 把 R 當計算機
@@ -130,7 +146,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 <div style="background-color:lightblue; font-size:70%; padding:5px">
 - 程式碼可以寫在 Workspace，也可以寫在 Console
 - 建議將還在測試階段的程式碼寫在 Workspace
-- 在 Workspace 執行程式按 `Ctrl + Enter` (for windows), `Command + Enter` (for Mac)
+- 在 Workspace 執行程式按 `Ctrl  Enter` (for windows), `Command  Enter` (for Mac)
 - 在 Console 執行程式按 `Enter`
 </div>
 
@@ -140,12 +156,12 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 <img src="D:/Project/Kemushi/R_workshop/image/save script.png" style="width:100%">
 
 
-## 用變數暫存資料 (variable)
+## Variable 用變數暫存資料
 
 <div>
 為任何想暫存在 R 裡面的東西取名字！
 
-- 用 `<-` 來指定變數 (快捷鍵 `Alt -`)
+- 用 `<-` 來指定變數
 
 ```{r }
 aaa <- 123
@@ -160,7 +176,7 @@ word
 
 </div>
 
-## 用變數暫存資料 (variable) II
+## Variable 用變數暫存資料 II
 
 ```{r}
 # 指定 m 等於 3、n 等於 5，計算 m + n
@@ -172,7 +188,7 @@ m + n
 ```
 
 
-## 用變數暫存資料 (variable) III
+## Variable 用變數暫存資料 III
 
 <div>
 命名注意事項：
@@ -202,7 +218,7 @@ m + n
 </div>
 
 ```{r}
-# 變數類型可用 class() 來查詢
+# 可用 class() 來查詢變數類型
 class("這是文字")
 class(2)
 ```
@@ -287,14 +303,13 @@ A.data.frame[3, 2]
 
 ## Function (函數)
 
+<div class="text">
+在 R 語言中，可以透過定義 function 來提供一個特定的功能，當使用 function 時，只要給定 function 要求的 **input (參數)**，執行後就可以取得 **Output  (回傳值)**
+</div>
 <div>
-<p>
-在 R 語言中，可以透過定義 function 來提供一個特定的功能，當使用 function 時只要給定 function 要求的 **input (參數)**，執行後就可以取得 **Output  (回傳值)**
-</p>
-<p>
 `函數名稱(參數1 = 值1, 參數2 = 值2, …)`
-</p>
-<p>
+</div>
+
 ```{r}
 matrix(1:12, nrow = 2)
 ```
@@ -302,13 +317,10 @@ matrix(1:12, nrow = 2)
 matrix(1:12, nrow = 2, byrow = TRUE)
 ```
 
-</p>
-</div>
-
 ## Package (套件)
 
-<div>
-一個 package 會包含了許多功能類型相近的 function，R 語言的強大就是來自於擁有這些龐大的套件庫，除了 R 內建的 packages (Base R) 之外，由於 R 是開放原碼，也有許多由世界各地不同的開發者所開發出來打包成套的函數，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`，。
+<div class="text">
+一個 package 會包含了許多功能類型相近的 function，R 語言的強大就是來自於擁有這些龐大的套件庫，除了 R 內建的 packages (Base R) 之外，由於 R 是開放原碼，也有許多由世界各地不同的開發者因為不同的需求所開發出來的套件，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`，。
 </div>
 
 <div>
@@ -316,7 +328,6 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 
 - 安裝套件
     - `install.packages(“套件名稱”)`
-
 - 讀取套件
     - `library(套件名稱)`
 </div>
@@ -329,7 +340,7 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 - ??函數名稱 (查詢尚未安裝套件內的函數)
 </div>
 
-<div style="background-color:lightblue; padding:10px; font-size:20px; line-height:120%">
+<div class="text" style="background-color:lightblue; padding:10px; font-size:20px">
 - Description: 函數的功能
 - Usage: 基本語法，包含引數的順序跟預設值
 - Arguments：引數的細節
@@ -343,6 +354,102 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 </div>
 
 
+## RStudio 常用快捷鍵介紹
+
+<div style="line-height:275%;">
+#### **Ctrl** **Enter** : 執行在 Workspace 中選取的程式碼
+
+#### **Alt** **-** : 輸入 `<-`
+
+#### **Ctrl** **Shift** **C** : 備註(#)與程式碼之間的轉換
+
+#### **Ctrl** **Shift** **f10** : 重新啟動 RStudio
+
+#### **Tab** : 自動輸入(省時省力幫你偷懶的好工具)
+</div>
+
+<div style="font-size:70%; background-color:lightgrey; padding:10px">
+for mac user: 
+
+把 **Ctrl** 換成 **Command**；把 **alt** 換成 **Option**
+<div>
+
+# 資料結構
+
+## 結構化的資料：電腦讀得懂的資料
+
+<div>
+1. 檔案格式：Excel, csv, txt(O); Word, PDF(X)
+2. 不要合併儲存格
+3. 欄位值格式一致
+
+[資料整理入門（上）：認識你的資料格式](https://www.ragic.com/intl/zh-TW/blog/199/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%85%A5%E9%96%80%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E8%AA%8D%E8%AD%98%E4%BD%A0%E7%9A%84%E8%B3%87%E6%96%99%E6%A0%BC%E5%BC%8F)
+</div>
+
+
+## 長型表格(一維表)：原始資料
+
+<div>
+<table style="padding:5px; width:100%">
+<col width="40%">
+<col width="60%">
+<tr>  
+<td style="padding:30px">
+<div class="text" style="background-color:lightblue">
+* 由欄跟列所組成
+* 一筆資料是一列
+* 每列包含一樣數量的欄
+* 每一欄都有欄位名稱
+* 同一欄內含有相同屬性的值
+</td>
+
+<td>
+```{r echo = FALSE}
+r_data <- 
+  read.csv("D:/Project/Kemushi/R_workshop/r_data.csv")
+r_data[1:10, ] %>% print()
+```
+</td>
+</tr>
+</table>
+</div>
+
+
+## 寬型表格(二維表)：報表資料 
+
+<div>
+呈現樣區內每一個樣點的總個體數
+</div>
+
+```{r echo = FALSE}
+r_data %>% 
+  setDT %>% 
+  dcast(Site ~ Point, value.var = "Count", fun = sum) %>% 
+  print()
+```
+
+<div>
+通常是原始資料經過樞紐分析後的樣子
+</div>
+
+## 錯誤示範
+
+```{r test}
+w_data <- 
+  read.csv("D:/Project/Kemushi/R_workshop/w_data.csv")
+```
+```{r echo = FALSE}
+w_data[1:5, ] %>% 
+  print()
+```
+
+<div>
+1. 合併儲存格
+2. 不是所有欄位都有欄位名稱
+3. 資料格式不一致
+</div>
+
+# 一些補充資訊...
 
 ## 不只是新手的常見問題
 
@@ -361,24 +468,50 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 
 找出關鍵字，問估狗大神
 
-### 除了估狗，還是估狗 
+### 有問題，除了估狗，還是估狗 
 </div>
 
 
-## 一些學習 R 或幫助 debug 的地方
-  
-[輕鬆學習 R 語言](http://www.learn-r-the-easy-way.tw) (有免費的線上電子書，也可以購買實體書支持一下作者)
+## 學習 R 或幫助 debug 的地方
 
-[How To Use R With Excel](https://rpubs.com/acolumbus/how-to-use-r-with-excel) (有 excel 跟 R 之間的函式庫對應)
+### 中英文教材
 
-[stackoverflow](https://stackoverflow.com/) (通常估狗問題的前幾個連結就有他)
+<div>
+1. [輕鬆學習 R 語言](http://www.learn-r-the-easy-way.tw) (有免費的線上電子書，也可以購買實體書支持一下作者)
 
-[Github](https://github.com/) (號稱工程師的臉書XD)
+2. [How To Use R With Excel](https://rpubs.com/acolumbus/how-to-use-r-with-excel) (內有 excel 跟 R 之間的函式庫對應)
+
+3. 在估狗輸入"R 教學" 或是 "R basic" 之類的，可以找到許多大大無私分享的入門教材
+</div>
+
+### Debug 專區
+
+[stackoverflow](https://stackoverflow.com/) (通常估狗問題跑出來的前幾個連結就是他了)
+
+### 進階版
+
+[Github](https://github.com/) 
+(號稱工程師的臉書XD 很多package會發布在這邊)
+
+
+## 一些幫助你精進 coding 技巧的 tip 
+
+### 學英文
+雖然現在中文的教材也不少，但英文的資源還是相對豐富，而且通常最新的訊息都只會是英文，在世界各個角落幫忙debug的大神們也都用英文溝通
+
+### 學會怎麼估狗
+學會怎麼下關鍵字幫你找到對的東西
+
+
+### 多寫就對了
 
 
 ## 沒有最好的工具，只有最適合你的工具。
 
 <div style="font-size:28px; line-height: 150%">
 <p>沒有 **懂得 coding 就比較厲害** 這回事！ (只有比較宅...T___T)</p>
-<p>Excel、Power BI 也都是很好的工具，但我覺得在時間許可的情況下，可以給自己一些機會去接觸不同的工具，讓你在處理事情時有不同的選項。在今天的課程結束後，如果覺得拖拉點選式還是比較適合自己，可以回去投入 excel 的懷抱沒關係，真的。工具就是要拿來減輕你的負擔，如果使用工具反而讓你覺得事倍功半，那就失去了使用工具的意義了</p>
+<p>R 只是工具的一種，讓你達到目的的手段之一，Excel、Power BI 也都是很好的工具！</p>
+
+<p style="font-size:75%">
+今天的課程結束後，如果覺得拖拉點選式還是比較適合自己，可以回去投入 excel 的懷抱沒關係，真的。工具就是要拿來減輕你的負擔，如果使用工具反而讓你覺得事倍功半，那就失去了使用工具的意義了。但我覺得在時間許可的情況下，可以給自己一些機會去接觸不同的工具，讓未來在處理事情時有不同的選項</p>
 </div>
