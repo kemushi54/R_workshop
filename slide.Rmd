@@ -29,15 +29,35 @@ output:
   line-height:120%;
   }
   
-  pre{
+  pre{ /* result of code */
   font-size:75%;
   }
   
   pre.prettyprint.lang-r {
   padding: 10px;
-  background-color: #C6C6C6;
+  background-color: #323232;
   border-left: #F2F2F2 60px solid;
   font-size:90%;
+  }
+  
+  .prettyprint .str, .prettyprint .atv { /* string */
+  color: #A5C261;
+  }
+  
+  .prettyprint .kwd, .prettyprint .tag, .prettyprint .opn, .prettyprint .clo {
+  color: #79ABFF;
+  }
+  
+  .prettyprint .pln, .prettyprint .pun{
+  color: #FFFFFF;
+  }
+  
+  .prettyprint .lit {
+  color: #79ABFF;
+  }
+   .prettyprint .com { /* comment */
+  color: #BC9458;
+  font-style: normal;
   }
   
   code {
@@ -47,7 +67,6 @@ output:
   .text{
   line-height:150%;
   }
-  
   
 </style>
 
@@ -376,23 +395,17 @@ for mac user:
 
 # 資料結構
 
-## 結構化的資料：電腦讀得懂的資料
+## 好的資料：電腦讀得懂的資料
 
-<div>
-1. 檔案格式：Excel, csv, txt(O); Word, PDF(X)
-2. 不要合併儲存格
-3. 欄位值格式一致
-
-[資料整理入門（上）：認識你的資料格式](https://www.ragic.com/intl/zh-TW/blog/199/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%85%A5%E9%96%80%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E8%AA%8D%E8%AD%98%E4%BD%A0%E7%9A%84%E8%B3%87%E6%96%99%E6%A0%BC%E5%BC%8F)
-</div>
+<img src="D:/Project/Kemushi/R_workshop/image/table_compare.png"          style="width:100%; padding:0px">
 
 
 ## 長型表格(一維表)：原始資料
 
 <div>
 <table style="padding:5px; width:100%">
-<col width="40%">
-<col width="60%">
+<col width="45%">
+<col width="55%">
 <tr>  
 <td style="padding:30px">
 <div class="text" style="background-color:lightblue">
@@ -401,15 +414,12 @@ for mac user:
 * 每列包含一樣數量的欄
 * 每一欄都有欄位名稱
 * 同一欄內含有相同屬性的值
+* 不要有同物異名<br> 
+<p style="font-size:80%">例：腳踏車、自行車、Bike (X)</p>
 </td>
 
 <td>
-```{r echo = FALSE}
-r_data <- 
-  read.csv("D:/Project/Kemushi/R_workshop/r_data.csv")
-r_data[1:10, ] %>% print()
-```
-</td>
+<img src="D:/Project/Kemushi/R_workshop/image/r_table_l.png"          style="width:90%; padding:0px"></td>
 </tr>
 </table>
 </div>
@@ -418,36 +428,36 @@ r_data[1:10, ] %>% print()
 ## 寬型表格(二維表)：報表資料 
 
 <div>
-呈現樣區內每一個樣點的總個體數
-</div>
-
-```{r echo = FALSE}
-r_data %>% 
-  setDT %>% 
-  dcast(Site ~ Point, value.var = "Count", fun = sum) %>% 
-  print()
-```
-
-<div>
 通常是原始資料經過樞紐分析後的樣子
 </div>
 
+<div>
+範例：呈現樣區內每一個樣點的總個體數
+</div>
+
+<img src="D:/Project/Kemushi/R_workshop/image/r_table_w.png"          style="width:70%; padding:0px">
+
+
 ## 錯誤示範
 
-```{r test}
-w_data <- 
-  read.csv("D:/Project/Kemushi/R_workshop/w_data.csv")
-```
-```{r echo = FALSE}
-w_data[1:5, ] %>% 
-  print()
-```
+<img src="D:/Project/Kemushi/R_workshop/image/w_table.png"          style="width:80%; padding:0px">
 
 <div>
 1. 合併儲存格
 2. 不是所有欄位都有欄位名稱
 3. 資料格式不一致
+4. 保留非原始資料的欄位(合計欄、列)
 </div>
+
+
+## 錯誤示範 II
+
+```{r}
+w_table <- read.csv("D:/Project/Kemushi/R_workshop/w_data.csv")
+
+w_table
+```
+
 
 # 一些補充資訊...
 
