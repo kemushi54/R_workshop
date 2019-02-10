@@ -26,14 +26,14 @@ output:
   
   pre{ /* result of code */
   font-size:75%;
-  border: #797979 2px solid;
-  padding: 10px;
+  border: #797979 1px solid;
+  padding: 5px;
   left: 0;
   width:98%; margin-left: 0.8%;
   }
   
   pre.prettyprint.lang-r {
-  padding: 10px;
+  padding: 5px;
   background-color: #323232;
   font-size:90%;
   }
@@ -110,9 +110,10 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 * 操作流程容易分享給他人
 
 
-## Why R
+## Why R?
 
 ### 1. 程式語言的特性
+* Reproducibility
     
 ### 2. 學界 (至少生態圈) 主流的資料分析語言
 * 許多 paper 的分析方法都會附上 R code
@@ -445,9 +446,9 @@ w_table
 
 2. 整串 error 訊息複製下來，貼上去問估狗大神
 
-### 想做某件事，但是沒有概念要怎麼做欸_(┐「ε:)_
+### 我想用Ｒ做ＸＸＸ，但是沒有概念要怎麼做欸_(┐「ε:)_
 
-"關鍵字 + R" 去問估狗大神
+關鍵字："想做的事(英文版) + R" 去問估狗大神
 
 <p style="color:grey">估狗估狗估狗除了估狗還是估狗估狗估狗什麼都餵狗就對惹ก็ʕ。͡ᴥ。ʔ ก้</p>
 
