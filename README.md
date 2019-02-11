@@ -2,9 +2,10 @@
 從軟體安裝開始的工作坊 
 
 ## 課前準備
+
 請下載並完成安裝 **R** 與 **RStudio**
 
-目前最新版的 R 是 3.5.2，RStudio 是 1.1.463，都安裝最新版的就可以了
+目前最新版的 R 是 3.5.2，RStudio 是 1.1.463，兩個都安裝最新版的就可以了
 
 **先安裝 R 再安裝 RStudio！！**
 
@@ -21,10 +22,13 @@
 
 
 ## 課程內容
-10:00~ R & RStudio 安裝、背景環境設定、常用 package 安裝 [[Slides]](https://kemushi54.github.io/R_workshop/slide.html)
 
-14:00~ R 的資料匯入、資料檢視、基礎敘述統計
+10:00~ 12:00 R & RStudio 安裝、背景環境設定、常用 package 安裝 [[Slides]](https://kemushi54.github.io/R_workshop/slide.html)
 
-15:00~ ggplot2 統計圖繪製
+14:00~ 15:00R 的資料匯入、資料檢視、基礎敘述統計
+
+15:00~ 15:30 Coffee time
+
+15:30~ 17:00ggplot2 統計圖繪製
 
 17:00~ R 教學網站
