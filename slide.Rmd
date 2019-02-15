@@ -175,7 +175,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 ## Variable (變數）
 
-在 R 裡面儲存資訊
+替資料取名字，在 R 裡面儲存資訊
 
 - 用 `<-` 來指定變數
 
@@ -250,6 +250,7 @@ class(2)
 
 ## Vector (向量)
 
+- 最基礎的資料結構
 - 一維資料結構
 - 只允許單一類型的資料內容
 
@@ -260,7 +261,7 @@ A.vector
 ```
 
 ```{r}
-# 選取部分 vector 的內容: []
+# 選取部分 vector 的內容: [ ]
 A.vector[2]
 ```
 
@@ -283,7 +284,7 @@ A.matrix[1, 3]
 ## List (清單)
 
 - 一維資料結構為基礎
-- 可以允許不同資料類型的資料內容
+- 允許不同資料類型的資料內容
 
 ```{r}
 # 產生一個 list: list()
@@ -293,6 +294,7 @@ A.list
 
 ## Data.frame (資料表)
 
+- 資料分析時最常見的資料型態
 ```{r}
 # 產生一個 data.frame: data.frame()
 A.data.frame <- 
@@ -337,8 +339,8 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 
 ## Help 使用函數前請詳閱公開說明書
 
-- ?函數名稱 (查詢已安裝套件內的函數)
-- ??函數名稱 (查詢尚未安裝套件內的函數)
+- ?  特定功能查詢
+- ?? 關鍵字查詢
 
 <div class="text" style="background-color:lightblue; padding:10px; font-size:20px">
 - Description: 函數的功能
