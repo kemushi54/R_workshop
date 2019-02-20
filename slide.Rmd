@@ -1,7 +1,7 @@
 ---
 title: "R Workshop @TESRI"
 author: "A.Y Chang"
-date: "2019.01.07"
+date: "2019.03.05"
 output: 
   ioslides_presentation:
     widescreen: yes
@@ -42,17 +42,14 @@ output:
   color: #A5C261;
   }
   
-  .prettyprint .kwd, .prettyprint .tag, .prettyprint .opn, .prettyprint .clo {
+  .prettyprint .kwd, .prettyprint .tag, .prettyprint .opn, .prettyprint .clo, .prettyprint .lit, .prettyprint .pun {
   color: #79ABFF;
   }
   
-  .prettyprint .pln, .prettyprint .pun{
+  .prettyprint .pln{
   color: #FFFFFF;
   }
   
-  .prettyprint .lit {
-  color: #79ABFF;
-  }
    .prettyprint .com { /* comment */
   color: #BC9458;
   font-style: normal;
@@ -83,12 +80,16 @@ knitr::opts_chunk$set(echo = TRUE,
 ## R & RStudio
 
 <div>
+<img src="image/R.png", align="right", width="150">
+
 ### R language
 - https://www.r-project.org/
 - 免費開放原始碼軟體程式語言與操作環境
 - Since 1993 (Ross Ihaka and Robert Gentleman)
 - 目前由 R Core Team (約20位成員) 負責開發與維護 
 - 強項：統計分析、繪圖、資料探勘
+
+<img src="image/RStudio.png", align="right", width="250">
 
 ### RStudio
 - https://www.rstudio.com/
@@ -104,6 +105,8 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 ## Why programming?
 
 以文字指令取代圖形化介面的拖拉點選操作流程
+
+<img src="image/script.png", align="right", width="550">
 
 * 可重複執行性高，而且容易修改
 * 可以直接在指令中寫備註
@@ -150,14 +153,14 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 ### 把 R 當計算機
 ```{r eval=FALSE, echo=TRUE}
 # 加(+)、減(-)、乘(*)、除(/)
-1+1
-3*5
+1 + 1
+3 * 5
 
 # 次方(^)
 2^10
 
 # 取餘數(%%)
-11%%3
+11 %% 3
 ```
 
 <div style="background-color:lightblue; font-size:70%; padding:5px">
@@ -173,7 +176,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 <img src="image/save script.png" style="width:100%">
 
 
-## Variable (變數）
+## Variable (變數)
 
 替資料取名字，在 R 裡面儲存資訊
 
@@ -191,35 +194,36 @@ word
 ```
 
 
-## Variable (變數）II
+## Variable (變數)II
 
-變數可以直接拿來做加減
+變數可以直接拿來做運算
 
 ```{r}
-# 指定 m 等於 3、n 等於 5，計算 m + n
+# 指定 m 等於 3、n 等於 5
 m <- 3
 n <- 5
 ```
 ```{r}
+# 計算 m + n
 m + n
 ```
 
 
-## Variable (變數）III
+## Variable (變數)III
 
 命名的規則及注意事項
 
-- 盡量用英文！
-<spam style="color:#1E9E1E">Data <- 123(O)</spam>; 
-<spam style="color:#9E1E1E">資料 <- 123(X)</spam>
+- 不要用中文！
+<spam style="color:#1E9E1E">Data <- 123 (O)</spam>; 
+<spam style="color:#9E1E1E">資料 <- 123 (X)</spam>
 - 變數名稱開頭不要用數字
-<spam style="color:#1E9E1E">Grid_1km(O)</spam>; 
-<spam style="color:#9E1E1E">1km_Grid(X)</spam>
+<spam style="color:#1E9E1E">Grid_1km (O)</spam>; 
+<spam style="color:#9E1E1E">1km_Grid (X)</spam>
 - 變數名稱不能含有 <spam style="color:#9E1E1E">空格</spam> 跟 <spam style="color:#9E1E1E">/</spam>
 - 大小寫有差別， Data 不等於 data
 - 取有意義的名字
-<spam style="color:#1E9E1E">RK.data(O)</spam>; 
-<spam style="color:#9E1E1E">a, aa, aaa(X)</spam>
+<spam style="color:#1E9E1E">RK.data (O)</spam>; 
+<spam style="color:#9E1E1E">a, aa, aaa (X)</spam>
 - 變數名稱不要取跟函數名稱相同
 
 
@@ -233,7 +237,7 @@ m + n
 ```{r}
 # 可用 class() 來查詢變數類型
 class("這是文字")
-class(2)
+class(aaa)
 ```
 
 
@@ -250,19 +254,19 @@ class(2)
 
 ## Vector (向量)
 
-- 最基礎的資料結構
+- R 語言中最基本的資料結構
 - 一維資料結構
 - 只允許單一類型的資料內容
 
 ```{r}
 # 產生一個 vector: c()
-A.vector <- c("aa", "bb", 1)
-A.vector
+V <- c("aa", "bb", 5)
+V
 ```
 
 ```{r}
 # 選取部分 vector 的內容: [ ]
-A.vector[2]
+V[2]
 ```
 
 ## Matrix (矩陣)
@@ -272,13 +276,13 @@ A.vector[2]
 
 ```{r}
 # 產生一個 matrix: matrix()
-A.matrix <- matrix(1:12, nrow = 2)
-A.matrix
+M <- matrix(1:12, nrow = 2)
+M
 ```
 
 ```{r 截取部分資料}
 # 選取部分 matrix 的內容: [row, column]
-A.matrix[1, 3]
+M[1, 3]
 ```
 
 ## List (清單)
@@ -288,8 +292,8 @@ A.matrix[1, 3]
 
 ```{r}
 # 產生一個 list: list()
-A.list <- list("aa", 1)
-A.list
+LI <- list("aa", 1)
+LI
 ```
 
 ## Data.frame (資料表)
@@ -297,15 +301,15 @@ A.list
 - 資料分析時最常見的資料型態
 ```{r}
 # 產生一個 data.frame: data.frame()
-A.data.frame <- 
-  data.frame(col1=c(1, 2, 3), 
-             col2=c("a", "b", "c"))
-A.data.frame
+DF <- 
+  data.frame(col1 = c(1, 2, 3), 
+            col2 = c("a", "b", "c"))
+DF
 ```
 
 ```{r}
 # 選取部分 data.frame 的內容: [row, column]
-A.data.frame[3, 2]
+DF[3, 2]
 ```
 
 
@@ -326,7 +330,7 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 ## Package (套件)
 
 <div class="text">
-一個 package 會包含了許多功能類型相近的 function，R 語言的強大就是來自於擁有這些龐大的套件庫，由於 R 是開放原碼，除了 R 內建的 packages (Base R) 之外，也有許多由世界各地不同的開發者因為不同的需求所開發出來的套件，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`，。
+一個 package 會包含了許多功能類型相近的 function，R 語言的強大就是來自於擁有這些龐大的套件庫，由於 R 是開放原碼，除了 R 內建的 packages (Base R) 之外，也有許多由世界各地不同的開發者因應不同的需求所開發出來的套件，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`。
 </div>
 
 ### **安裝與讀取套件**
@@ -336,10 +340,11 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 - 讀取套件
     - `library(套件名稱)`
 
+請試著安裝 `readxl`、`ggplot2` 這兩個套件
 
 ## Help 使用函數前請詳閱公開說明書
 
-- ?  特定功能查詢
+- ?  特定 function 查詢
 - ?? 關鍵字查詢
 
 <div class="text" style="background-color:lightblue; padding:10px; font-size:20px">
@@ -452,7 +457,7 @@ w_table
 
 關鍵字："想做的事(英文版) + R" 去問估狗大神
 
-<p style="color:grey">估狗估狗估狗除了估狗還是估狗估狗估狗什麼都餵狗就對惹ก็ʕ。͡ᴥ。ʔ ก้</p>
+<p style="color:grey; font-size:80%">估狗估狗估狗除了估狗還是估狗估狗估狗什麼都餵狗就對惹U・ω・U</p>
 
 
 ## 學習 R 或幫助 debug 的地方
@@ -498,6 +503,8 @@ w_table
 <p>沒有 **懂得 coding 就比較厲害** 這回事！ (只有比較宅 (｢･ω･)｢)</p>
 <p>R 只是眾多資料分析工具的一種，讓你達到目的的手段之一，Excel、Power BI 也都是很好的工具，選工具的重點還是看你的需求以及你的使用習慣。</p>
 
-<p style="font-size:75%">
+<br>
+
+<p style="font-size:75%; color:grey">
 今天的課程結束後，如果覺得拖拉點選的圖形化介面工具還是比較適合自己，可以回去投入 excel 的懷抱沒關係，真的。工具就是要拿來減輕你的負擔，如果使用工具反而讓你覺得事倍功半，那就失去了使用工具的意義了。但我覺得在時間許可的情況下，可以給自己一些機會去接觸不同的工具，讓未來在處理事情時有不同的選項。</p>
 </div>
