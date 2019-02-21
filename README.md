@@ -25,7 +25,7 @@
 
 10:00~ 12:00 R & RStudio 安裝、背景環境設定、常用 package 安裝 [**[Slides I]**](https://kemushi54.github.io/R_workshop/slide.html)
 
-14:00~ 15:00R 的資料匯入、資料檢視、基礎敘述統計
+14:00~ 15:00R 的資料匯入、資料檢視、基礎敘述統計[**[Slides II]**](https://github.com/kemushi54/R_workshop/R_tutorial-p2-slide.html)
 
 15:00~ 15:30 Coffee time
 
