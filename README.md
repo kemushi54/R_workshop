@@ -19,7 +19,8 @@
 
 詳細的 R 與 RStudio 的安步驟請參照 [**這裡**](http://www.learn-r-the-easy-way.tw/chapters/2#r)
 
-
+## 課程資料
+[**資料下載點**](https://drive.google.com/open?id=16yZyvLBlPxV8r6-CQpRnwasjyYC9MH2c)
 
 ## 課程內容
 
