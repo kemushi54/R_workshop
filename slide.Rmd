@@ -1,6 +1,6 @@
 ---
 title: "R Workshop @TESRI"
-author: "A.Y Chang"
+author: "A.Y. Chang"
 date: "2019.03.05"
 output: 
   ioslides_presentation:
@@ -111,6 +111,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 * 可重複執行性高，而且容易修改
 * 可以直接在指令中寫備註
 * 操作流程容易分享給他人
+* 執行重複性的任務 (迴圈)
 
 
 ## Why R?
@@ -120,7 +121,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
     
 ### 2. 學界 (至少生態圈) 主流的資料分析語言
 * 許多 paper 的分析方法都會附上 R code
-* 相關 package 多 (IUCN redlist, trim)
+* 相關 package 多 (`red`: IUCN red list index, `rtrim`: trim)
 
 ### 3. Open source
 * 眾多現成的小工具 (packages)
@@ -165,7 +166,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 <div style="background-color:lightblue; font-size:70%; padding:5px">
 - 程式碼可以寫在 Workspace，也可以寫在 Console
-- 建議將還在測試階段的程式碼寫在 Workspace
+- 建議將程式碼寫在 Workspace，比較好回溯做過什麼
 - 在 Workspace 執行程式按 `Ctrl  Enter` (for windows), `Command  Enter` (for Mac)
 - 在 Console 執行程式按 `Enter`
 </div>
@@ -176,7 +177,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 <img src="image/save script.png" style="width:100%">
 
 
-## Variable (變數)
+## Variable (變數) I
 
 替資料取名字，在 R 裡面儲存資訊
 
@@ -194,7 +195,7 @@ word
 ```
 
 
-## Variable (變數)II
+## Variable (變數) II
 
 變數可以直接拿來做運算
 
@@ -209,7 +210,7 @@ m + n
 ```
 
 
-## Variable (變數)III
+## Variable (變數) III
 
 命名的規則及注意事項
 
@@ -296,41 +297,55 @@ LI <- list("aa", 1)
 LI
 ```
 
-## Data.frame (資料表)
+## Data.frame (資料表) I
 
 - 資料分析時最常見的資料型態
 ```{r}
 # 產生一個 data.frame: data.frame()
 DF <- 
   data.frame(col1 = c(1, 2, 3), 
-            col2 = c("a", "b", "c"))
+             col2 = c("a", "b", "c"))
 DF
 ```
 
+
+## Data.frame (資料表) II
+
+- 選取部分 data.frame 的內容: 
+
+```{r echo = FALSE}
+DF
+```
+
+
 ```{r}
-# 選取部分 data.frame 的內容: [row, column]
+# 方法一： [row, column]
 DF[3, 2]
+
+# 方法二： $
+DF$col1
 ```
 
 
 ## Function (函數)
 
 <div class="text">
-在 R 語言中，可以透過定義 function 來提供一個特定的功能，當使用 function 時，只要給定 function 要求的 **input (參數)**，執行後就可以取得 **Output  (回傳值)**
+在 R 語言中，可以透過定義 function 來提供一個特定的功能，當使用 function 時，只要給定 function 要求的**參數**，執行後就可以取得 **回傳值**
 </div>
 `函數名稱(參數1 = 值1, 參數2 = 值2, …)`
 
 ```{r}
-matrix(1:12, nrow = 2)
+matrix(data = 1:12, nrow = 2)
 ```
 ```{r}
-matrix(1:12, nrow = 2, byrow = TRUE)
+matrix(data = 1:12, nrow = 2, byrow = TRUE)
+# matrix(1:12, 2, byrow = TRUE)
 ```
 
 ## Package (套件)
 
 <div class="text">
-一個 package 會包含了許多功能類型相近的 function，R 語言的強大就是來自於擁有這些龐大的套件庫，由於 R 是開放原碼，除了 R 內建的 packages (Base R) 之外，也有許多由世界各地不同的開發者因應不同的需求所開發出來的套件，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`。
+function的集合。一個 package 會包含了許多功能類型相近的 function，由於 R 是開放原碼，除了 R 內建的 packages (Base R) 之外，也有許多由世界各地不同的開發者因應不同的需求所開發出來的套件，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`，R 語言的強大就是來自於擁有這些龐大的套件庫。
 </div>
 
 ### **安裝與讀取套件**
@@ -345,32 +360,29 @@ matrix(1:12, nrow = 2, byrow = TRUE)
 ## Help 使用函數前請詳閱公開說明書
 
 - ?  特定 function 查詢
-- ?? 關鍵字查詢
+- ?? 運用關鍵字在 CRAN (R綜合典藏網) 查詢
 
 <div class="text" style="background-color:lightblue; padding:10px; font-size:20px">
-- Description: 函數的功能
-- Usage: 基本語法，包含引數的順序跟預設值
-- Arguments：引數的細節
+- Description: 函數的功能說明
+- Usage: 基本語法，包含參數的順序跟預設值
+- Arguments：參數的細節
 - Details：函數的詳細內容
 - Value：回傳值的內容
 - See Also：其他相關的函數
 - Examples：使用範例
 </div>
 
-<div style="text-align:right;font-size:70%">(初學R語言的60分鐘 廖鎮磐)
-</div>
-
 
 ## RStudio 常用快捷鍵介紹
 
 <div style="line-height:50px; padding:10px;">
- **Ctrl** **Enter** : 執行在 Workspace 中選取的程式碼
+ **[Ctrl]** + **[Enter]** : 執行在 Workspace 中選取的程式碼
 
- **Alt** **-** : 輸入 `<-`
+ **[Alt]** + **[-]** : 輸入 `<-`
 
- **Ctrl** **Shift** **C** : 備註(#)與程式碼之間的轉換
+ **[Ctrl]** + **[Shift]** + **[C]** : 備註(#)與程式碼之間的轉換
 
- **Ctrl** **Shift** **f10** : 重新啟動 RStudio
+ **[Ctrl]** + **[Shift]** + **[F10]** : 重新啟動 R Session
 
  **Tab** : 自動輸入(省時省力幫你偷懶的好工具)
 </div>
@@ -385,8 +397,8 @@ for mac user:
 
 ## 人讀的資料 vs 電腦讀的資料
 
-<img src="image/table_compare.png"          style="width:100%; padding:0px">
-
+<img src="image/table_comp_1.png" style="width:100% padding:0px">
+<img src="image/table_comp_2.png" style="width:100% padding:0px">
 
 ## 長型表格(一維表)：原始資料
 
@@ -443,19 +455,19 @@ w_table
 
 ## 不只是新手的常見問題
 
-### 函數套件五花八門，怎麼學RRRRRR！？
+### Q1 函數套件五花八門，怎麼學RRRRRR！？
 
 函數永遠學不完，而且還會一直開發新的，有要用到再來估狗就好
 
-### 遇到 error 怎麼辦 @_____@？
+### Q2 遇到 error 怎麼辦 @_____@？
 
-1. 先冷靜下來看看 error 吐出的訊息是什麼，雖然都是英文，雖然有些很長像外星語，但通常都會提示是哪裡出問題了
+1. 先冷靜下來。看看 error 吐出的訊息是什麼，雖然都是英文，雖然好像又不太像英文(?)，但通常冷靜下來還是會找到看得懂的幾個字告訴你問題出在哪裡
 
 2. 整串 error 訊息複製下來，貼上去問估狗大神
 
-### 我想用Ｒ做ＸＸＸ，但是沒有概念要怎麼做欸_(┐「ε:)_
+### Q3 我想用Ｒ做ＸＸＸ，但是沒有概念要怎麼做欸_(┐「ε:)_
 
-關鍵字："想做的事(英文版) + R" 去問估狗大神
+關鍵字："想做的事(強烈建議用英文) + R" 去問估狗大神
 
 <p style="color:grey; font-size:80%">估狗估狗估狗除了估狗還是估狗估狗估狗什麼都餵狗就對惹U・ω・U</p>
 
@@ -470,9 +482,8 @@ w_table
 
 3. [How To Use R With Excel](https://rpubs.com/acolumbus/how-to-use-r-with-excel) (內有 excel 跟 R 之間的函式庫對應)
 
-4. Cheat sheet 系列
-[ggplot2](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
-[dplyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+4. 官方 Cheat sheet 系列： [ggplot2](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)、
+[dplyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) 等
 
 ### Debug 專區
 
