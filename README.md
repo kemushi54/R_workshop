@@ -17,7 +17,7 @@
 
 下載完畢之後執行安裝檔，依照提示訊息點選確認或下一步就能完成安裝了
 
-詳細的 R 與 RStudio 的安步驟請參照 [**這裡**](http://www.learn-r-the-easy-way.tw/chapters/2#r)
+詳細的 R 與 RStudio 的安裝步驟請參照 [**這裡**](http://www.learn-r-the-easy-way.tw/chapters/2#r)
 
 ----
 ## 課程資料
