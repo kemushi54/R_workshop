@@ -108,7 +108,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 <img src="image/script.png", align="right", width="550">
 
-* 可重複執行性高，而且容易修改
+* 可重複執行性高，容易修改後再次執行
 * 可以直接在指令中寫備註
 * 操作流程容易分享給他人
 * 執行重複性的任務 (迴圈)
@@ -116,7 +116,7 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 ## Why R?
 
-### 1. 程式語言的特性
+### 1. 程式語言
 * Reproducibility
     
 ### 2. 學界 (至少生態圈) 主流的資料分析語言
@@ -166,9 +166,9 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 <div style="background-color:lightblue; font-size:70%; padding:5px">
 - 程式碼可以寫在 Workspace，也可以寫在 Console
-- 建議將程式碼寫在 Workspace，比較好回溯做過什麼
 - 在 Workspace 執行程式按 `Ctrl  Enter` (for windows), `Command  Enter` (for Mac)
 - 在 Console 執行程式按 `Enter`
+- 建議將程式碼寫在 Workspace，比較好回溯做過什麼跟做筆記
 </div>
 
 
@@ -179,19 +179,23 @@ http://www.learn-r-the-easy-way.tw/chapters/2#r
 
 ## Variable (變數) I
 
-替資料取名字，在 R 裡面儲存資訊
-
-- 用 `<-` 來指定變數
+電腦裡面儲存資料要取檔案名稱，在 R 裡面暫存資料要取變數名稱<br>
+用 `<-` 來指定資料到變數裡面
 
 ```{r }
+# 把 123 儲存在 R 裡面，並且取名為 aaa
 aaa <- 123
-word <- "文字"
+aaa = 123
 ```
-```{r}
+
+接著在 Console 或 Workspace 執行 aaa，就可以看到裡面儲存的資訊
+```{r echo = FALSE}
 aaa
 ```
+
+再次指定資訊在相同名稱的變數的話，會直接把前一次的資訊覆蓋掉
 ```{r}
-word
+aaa <- 456; aaa
 ```
 
 
@@ -206,29 +210,23 @@ n <- 5
 ```
 ```{r}
 # 計算 m + n
-m + n
+m + n  
 ```
-
+沒有把結果指定進變數的話，執行完後會直接印出結果，但不會儲存在任何地方
 
 ## Variable (變數) III
 
-命名的規則及注意事項
+命名的潛規則及注意事項
 
-- 不要用中文！
-<spam style="color:#1E9E1E">Data <- 123 (O)</spam>; 
-<spam style="color:#9E1E1E">資料 <- 123 (X)</spam>
-- 變數名稱開頭不要用數字
-<spam style="color:#1E9E1E">Grid_1km (O)</spam>; 
-<spam style="color:#9E1E1E">1km_Grid (X)</spam>
-- 變數名稱不能含有 <spam style="color:#9E1E1E">空格</spam> 跟 <spam style="color:#9E1E1E">/</spam>
-- 大小寫有差別， Data 不等於 data
-- 取有意義的名字
-<spam style="color:#1E9E1E">RK.data (O)</spam>; 
-<spam style="color:#9E1E1E">a, aa, aaa (X)</spam>
-- 變數名稱不要取跟函數名稱相同
+- 不要用中文。 <spam style="color:#1E9E1E">Data <- 123 (O)</spam>  <spam style="color:#9E1E1E">資料 <- 123 (X)</spam>
+- 變數名稱開頭不要用數字。 <spam style="color:#1E9E1E">Grid_1km (O)</spam>  <spam style="color:#9E1E1E">1km_Grid (X)</spam>
+- 變數名稱不能含有 <spam style="color:#9E1E1E">空格</spam> 跟 <spam style="color:#9E1E1E">/</spam>。 <spam style="color:#1E9E1E">Date_01, Data-01 (O)</spam>  <spam style="color:#9E1E1E">Data 01 (X)</spam>
+- 大小寫有差別， Data 不等於 data。
+- 取有意義的名字。 <spam style="color:#1E9E1E">RK.data (O)</spam>  <spam style="color:#9E1E1E">a, aa, aaa (X)</spam>
+- 變數名稱不要取跟函數名稱相同。
 
 
-## 變數類型
+## 變數格式
 
 - Numeric (數值): `2`
 - Logical (邏輯值): `TRUE, FALSE, T, F`
@@ -255,18 +253,21 @@ class(aaa)
 
 ## Vector (向量)
 
-- R 語言中最基本的資料結構
-- 一維資料結構
+- 一維資料結構，R 語言中最基本的資料結構
 - 只允許單一類型的資料內容
 
 ```{r}
-# 產生一個 vector: c()
-V <- c("aa", "bb", 5)
-V
+# 產生一個 vector: c()，用 , 來分隔 vector 內的元素
+V <- c("aa", "bb", 5)  # 產生 vector
+V # 印出 V 的內容
 ```
 
 ```{r}
-# 選取部分 vector 的內容: [ ]
+1:5  # 用 : 來建立連續整數的 vector，等同於 c(1, 2, 3, 4, 5)
+```
+
+```{r}
+# 選取部分 vector 的內容: [location]
 V[2]
 ```
 
@@ -277,8 +278,8 @@ V[2]
 
 ```{r}
 # 產生一個 matrix: matrix()
-M <- matrix(1:12, nrow = 2)
-M
+M <- matrix(1:12, nrow = 2) # 產生 matrix
+M # 印出 M 的內容
 ```
 
 ```{r 截取部分資料}
@@ -292,75 +293,77 @@ M[1, 3]
 - 允許不同資料類型的資料內容
 
 ```{r}
-# 產生一個 list: list()
-LI <- list("aa", 1)
-LI
+# 產生一個 list: list()，用 , 區隔 list 內不同的項目
+LI <- list("aa", 1) # 產生 list
+LI # 印出 LI 的內容
 ```
 
 ## Data.frame (資料表) I
 
 - 資料分析時最常見的資料型態
+- 一般把 xlsx, csv 等資料匯進 R 裡面的時候就是以 data.frame 的形式存在
 ```{r}
 # 產生一個 data.frame: data.frame()
 DF <- 
   data.frame(col1 = c(1, 2, 3), 
-             col2 = c("a", "b", "c"))
-DF
+             col2 = c("a", "b", "c")) # 產生 data.frame
+DF # 印出 DF 的內容
 ```
 
 
 ## Data.frame (資料表) II
 
-- 選取部分 data.frame 的內容: 
+選取部分 data.frame 的內容: 
 
-```{r echo = FALSE}
-DF
+方法一： [row, column]
+```{r eval = FALSE}
+DF[3, 2]  #  取第 3 列，第 2 欄的資料
+DF[3,]    #  取所有第 3 列的資料
+DF[,2]    #  取所有第 2 欄的資料
 ```
 
-
+方法二： $
 ```{r}
-# 方法一： [row, column]
-DF[3, 2]
-
-# 方法二： $
-DF$col1
+DF$col1  #  取第 2 欄的資料
 ```
-
 
 ## Function (函數)
 
 <div class="text">
-在 R 語言中，可以透過定義 function 來提供一個特定的功能，當使用 function 時，只要給定 function 要求的**參數**，執行後就可以取得 **回傳值**
-</div>
+在 R 語言中，可以透過定義 function 來提供一個特定的功能，當使用 function 時，只要給定 function 要求的**參數**，執行後就可以取得**回傳值**<br>
 `函數名稱(參數1 = 值1, 參數2 = 值2, …)`
+</div>
+
+```{r eval = FALSE}
+matrix(data = 1:12, nrow = 2)
+# matrix(1:12, 2, byrow = TRUE)  data 這個參數名稱可以省略
+```
+```{r echo = FALSE}
+matrix(1:12, nrow = 2)
+```
 
 ```{r}
-matrix(data = 1:12, nrow = 2)
-```
-```{r}
-matrix(data = 1:12, nrow = 2, byrow = TRUE)
-# matrix(1:12, 2, byrow = TRUE)
+matrix(data = 1:12, nrow = 2, byrow = TRUE)  # 多指定一個byrow
 ```
 
 ## Package (套件)
 
 <div class="text">
-function的集合。一個 package 會包含了許多功能類型相近的 function，由於 R 是開放原碼，除了 R 內建的 packages (Base R) 之外，也有許多由世界各地不同的開發者因應不同的需求所開發出來的套件，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`，R 語言的強大就是來自於擁有這些龐大的套件庫。
+Package 可以視為 function 的集合。一個 package 通常會包含許多功能類型相近的 function，由於 R 是開放原碼，除了 R 內建的 packages (Base R) 之外，也有許多由世界各地不同的開發者因應不同的需求所開發出來的套件，像是繪圖用的 `ggplot2`、資料處理用的 `dplyr`，或是文字處理的 `stringr`，R 語言的強大就是來自於擁有這些龐大的套件庫。
 </div>
 
 ### **安裝與讀取套件**
 
-- 安裝套件
-    - `install.packages(“套件名稱”)`
-- 讀取套件
-    - `library(套件名稱)`
+- 安裝套件 `install.packages(“套件名稱”)`
+- 讀取套件 `library(套件名稱)`
 
-請試著安裝 `readxl`、`ggplot2` 這兩個套件
+請試著在自己的電腦安裝 `readxl`、`ggplot2` 這兩個套件
+
 
 ## Help 使用函數前請詳閱公開說明書
 
 - ?  特定 function 查詢
-- ?? 運用關鍵字在 CRAN (R綜合典藏網) 查詢
+- ?? 運用關鍵字在 CRAN (R官方綜合典藏網) 查詢
 
 <div class="text" style="background-color:lightblue; padding:10px; font-size:20px">
 - Description: 函數的功能說明
@@ -371,6 +374,8 @@ function的集合。一個 package 會包含了許多功能類型相近的 funct
 - See Also：其他相關的函數
 - Examples：使用範例
 </div>
+
+<br>試著在 R 裡面執行 `?matrix` 看看
 
 
 ## RStudio 常用快捷鍵介紹
@@ -432,7 +437,7 @@ for mac user:
 <img src="image/r_table_w.png"          style="width:70%; padding:0px">
 
 
-## 錯誤示範
+## 錯誤示範: 電腦看不懂的資料
 
 <img src="image/w_table.png" style="width:80%; padding:0px">
 
@@ -442,7 +447,7 @@ for mac user:
 4. 保留非原始資料的欄位(合計欄、列)
 
 
-## 錯誤示範 II
+## 錯誤示範：電腦看不懂的資料 II
 
 ```{r}
 w_table <- read.csv("w_data.csv", sep = ",")
@@ -461,24 +466,26 @@ w_table
 
 ### Q2 遇到 error 怎麼辦 @_____@？
 
-1. 先冷靜下來。看看 error 吐出的訊息是什麼，雖然都是英文，雖然好像又不太像英文(?)，但通常冷靜下來還是會找到看得懂的幾個字告訴你問題出在哪裡
+1. 先冷靜下來。看看 error 吐出的訊息是什麼，雖然都是英文，雖然好像又不太像英文(?)，但通常冷靜下來還是會找到幾個看得懂的字告訴你問題出在哪裡
 
 2. 整串 error 訊息複製下來，貼上去問估狗大神
 
 ### Q3 我想用Ｒ做ＸＸＸ，但是沒有概念要怎麼做欸_(┐「ε:)_
 
-關鍵字："想做的事(強烈建議用英文) + R" 去問估狗大神
+關鍵字："想做的事(強烈建議用英文) + R" 去問估狗大神<br>
+"merge data.frame R"、"data mining r"、"bar plot r"、"change axis text r"
 
 <p style="color:grey; font-size:80%">估狗估狗估狗除了估狗還是估狗估狗估狗什麼都餵狗就對惹U・ω・U</p>
 
 
 ## 學習 R 或幫助 debug 的地方
 
-### 中英文教材
+### 幾個還不錯的中/英文教材
 
 1. [輕鬆學習 R 語言](http://www.learn-r-the-easy-way.tw) (有免費的線上電子書，也可以購買實體書支持一下作者)
 
 2. [R 語言翻轉教室](https://datascienceandr.org/install.html?fbclid=IwAR1-2E0NrUauLO5doWLFYvxXTIP9nvbWvYVXPIIp2_ol_-RKPl4MZDh42bI)
+(在 R 裡面學習 R)
 
 3. [How To Use R With Excel](https://rpubs.com/acolumbus/how-to-use-r-with-excel) (內有 excel 跟 R 之間的函式庫對應)
 
@@ -492,16 +499,14 @@ w_table
 ### 進階版
 
 [Github](https://github.com/) 
-(號稱工程師的臉書XD 很多package會發布在這邊)
+(號稱工程師的臉書www 很多package會發布在這邊)
 
 
 ## 一些幫助你精進 coding 技巧的撇步
 
 ### 1. 學英文
-雖然現在中文的教材也不少，但英文的資源還是相對豐富，而且通常最新的訊息都只會是英文，在世界各個角落幫忙debug的大神們也都用英文溝通
 
 ### 2. 學會估狗
-學會怎麼下關鍵字幫你找到對的東西
 
 ### 3. 學會拆解問題
 
@@ -512,10 +517,9 @@ w_table
 
 <div style="font-size:28px; line-height: 150%">
 <p>沒有 **懂得 coding 就比較厲害** 這回事！ (只有比較宅 (｢･ω･)｢)</p>
-<p>R 只是眾多資料分析工具的一種，讓你達到目的的手段之一，Excel、Power BI 也都是很好的工具，選工具的重點還是看你的需求以及你的使用習慣。</p>
+<p>R 只是眾多資料分析工具的一種，讓你達到目的的手段之一，Excel、Power BI 也都是很好的工具，選工具的重點還是看你要做什麼以及你的使用習慣。</p>
 
-<br>
 
 <p style="font-size:75%; color:grey">
-今天的課程結束後，如果覺得拖拉點選的圖形化介面工具還是比較適合自己，可以回去投入 excel 的懷抱沒關係，真的。工具就是要拿來減輕你的負擔，如果使用工具反而讓你覺得事倍功半，那就失去了使用工具的意義了。但我覺得在時間許可的情況下，可以給自己一些機會去接觸不同的工具，讓未來在處理事情時有不同的選項。</p>
+今天的課程結束後，如果覺得拖拉點選的圖形化介面工具還是比較適合自己，可以回去投入 Excel 的懷抱沒關係，真的（宅宅的講師與小助教們不會難過（吧？））。工具就是要拿來減輕你的負擔，如果使用工具反而讓你覺得事倍功半，那就失去了使用工具的意義了。但我覺得在時間許可的情況下，可以給自己一些機會去接觸不同的工具，讓未來在處理事情時有不同的選項。</p>
 </div>
